@@ -3,7 +3,8 @@ import Foundation
 import Foundation
 
 protocol WeatherManagerDelegate {
-    func didUpdateWeather(weather: WeatherModel)
+    func didUpdateWeather(_ weatherManage:WeatherManager, weather: WeatherModel)
+    func didFailWithError(error: Error)
 }
 
 struct WeatherManager {
@@ -26,14 +27,14 @@ struct WeatherManager {
             //3.Give the session a task
             let task = session.dataTask(with: url) {(data, response, error) in
                 if error != nil{
-                    print(error!)
+                    self.delegate?.didFailWithError(error: error!)
                     return
                 }
                 
                 if let safeData = data {
                     //在closure里面要加self.
-                    if let weather = self.parseJSON(weatherData: safeData){
-                        self.delegate?.didUpdateWeather(weather: weather)
+                    if let weather = self.parseJSON(safeData){
+                        self.delegate?.didUpdateWeather(self, weather: weather)
                     }
                     
                     //测试响应
@@ -47,7 +48,7 @@ struct WeatherManager {
         }
     }
     
-    func parseJSON (weatherData: Data) -> WeatherModel?{
+    func parseJSON (_ weatherData: Data) -> WeatherModel?{
         let decoder = JSONDecoder()
         do{
             let decoderData = try decoder.decode(WeatherData.self, from: weatherData)
@@ -66,7 +67,7 @@ struct WeatherManager {
             return weather
             
         } catch{
-            print(error)
+            delegate?.didFailWithError(error: error)
             return nil
         }
     }
