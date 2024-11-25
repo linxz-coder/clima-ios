@@ -1,8 +1,16 @@
 import Foundation
 
+import Foundation
+
+protocol WeatherManagerDelegate {
+    func didUpdateWeather(weather: WeatherModel)
+}
+
 struct WeatherManager {
     let weatherURL =
     "https://api.openweathermap.org/data/2.5/weather?appid=2681fe78b902a849c6b60336c8ed332a&&units=metric&lang=zh_cn"
+    
+    var delegate: WeatherManagerDelegate?
     
     func fetchWeather(cityName: String){
         let urlString = "\(weatherURL)&q=\(cityName)"
@@ -23,7 +31,10 @@ struct WeatherManager {
                 }
                 
                 if let safeData = data {
-                    self.parseJSON(weatherData: safeData) //在closure里面要加self.
+                    //在closure里面要加self.
+                    if let weather = self.parseJSON(weatherData: safeData){
+                        self.delegate?.didUpdateWeather(weather: weather)
+                    }
                     
                     //测试响应
                     //let dataString = String(data: safeData, encoding: .utf8)
@@ -36,7 +47,7 @@ struct WeatherManager {
         }
     }
     
-    func parseJSON (weatherData: Data){
+    func parseJSON (weatherData: Data) -> WeatherModel?{
         let decoder = JSONDecoder()
         do{
             let decoderData = try decoder.decode(WeatherData.self, from: weatherData)
@@ -52,8 +63,11 @@ struct WeatherManager {
             print(weather.conditionName)
             print(weather.temperaturestring)
             
+            return weather
+            
         } catch{
             print(error)
+            return nil
         }
     }
     

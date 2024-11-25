@@ -20,9 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8FFF19E02CF4541500C27FDA /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherManager.swift; path = Clima/WeatherManager.swift; sourceTree = SOURCE_ROOT; };
-		8FFF19E32CF46C7C00C27FDA /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherData.swift; path = Clima/WeatherData.swift; sourceTree = SOURCE_ROOT; };
-		8FFF19E52CF47B7D00C27FDA /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherModel.swift; path = Clima/WeatherModel.swift; sourceTree = SOURCE_ROOT; };
+		8FFF19E02CF4541500C27FDA /* WeatherManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherManager.swift; path = Clima/Model/WeatherManager.swift; sourceTree = SOURCE_ROOT; };
+		8FFF19E32CF46C7C00C27FDA /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherData.swift; path = Clima/Model/WeatherData.swift; sourceTree = SOURCE_ROOT; };
+		8FFF19E52CF47B7D00C27FDA /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeatherModel.swift; path = Clima/Model/WeatherModel.swift; sourceTree = SOURCE_ROOT; };
 		ADAA27AD231BBFAF00365194 /* Clima.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clima.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ADAA27B0231BBFAF00365194 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ADAA27B2231BBFAF00365194 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,11 +97,12 @@
 			isa = PBXGroup;
 			children = (
 				8FFF19E02CF4541500C27FDA /* WeatherManager.swift */,
-				8FFF19E32CF46C7C00C27FDA /* WeatherData.swift */,
 				8FFF19E52CF47B7D00C27FDA /* WeatherModel.swift */,
+				8FFF19E32CF46C7C00C27FDA /* WeatherData.swift */,
 			);
-			path = Model;
-			sourceTree = "<group>";
+			name = Model;
+			path = Clima/Model;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXGroup section */
 
